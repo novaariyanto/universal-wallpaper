@@ -27,14 +27,16 @@ class Wallpapers extends API_Controller
 		foreach($headers as $key=>$val){
 		//   echo $key . ': ' . $val . '<br>';
 		  if($key =="kategori"){
-			$kategori = $val;
+			 $kategori = $val;
 		  }
 		}
 	
+	
 		if ( $this->is_get ) {
 		// if is get record using GET method, get default setting for GET_ALL_CATEGORIES
-			
+		
 			$setting = $this->Api->get_one_by( array( 'api_constant' => GET_ALL_WALLPAPERS ));
+	
 		}
 
 		if ( $this->is_search ) {
@@ -43,7 +45,7 @@ class Wallpapers extends API_Controller
 			$setting = $this->Api->get_one_by( array( 'api_constant' => SEARCH_WALLPAPERS ));
 			
 				$conds['searchterm']     	 = $this->post('wallpaper_name');
-				$conds['cat_id'] 		 	 = $kategori;
+				$conds['cat_id'] 		 	 = $this->post('kategori');
 				$conds['types']      	 	 = $this->post('type');
 				$conds['is_recommended']	 = $this->post('is_recommended');
 				$conds['is_portrait']    	 = $this->post('is_portrait');
